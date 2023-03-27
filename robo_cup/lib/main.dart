@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:robo_cup/Vues/comp%C3%A9tition/displayComp%C3%A9tition.dart';
 import 'package:robo_cup/Vues/login.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -26,7 +27,7 @@ class _roboCupState extends State<roboCup> {
             fontFamily: 'Raleway'),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: loginPage(),
+          body: DisplayCompetition(),
         ));
   }
 }
