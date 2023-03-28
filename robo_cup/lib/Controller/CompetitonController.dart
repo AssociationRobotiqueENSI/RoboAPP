@@ -13,7 +13,7 @@ class CompetitionController extends GetxController {
 
       competition Tout_Terrain = new competition(
           nom: "Tout Terrain",
-          image: "assets/images/logo2.png",
+          image: "assets/images/tout-terrain.png",
           tache: [
             new Tache(nom: "tache1", note: 2, valeurMax: 2),
             new Tache(nom: "tache2", note: 2, valeurMax: 2),
@@ -23,7 +23,7 @@ class CompetitionController extends GetxController {
 
       competition junior = new competition(
           nom: "junior",
-          image: "assets/images/junior.jpg",
+          image: "assets/images/junior.png",
           tache: [
             new Tache(nom: "tache1", note: 2, valeurMax: 2),
             new Tache(nom: "tache2", note: 2, valeurMax: 2),
@@ -33,7 +33,7 @@ class CompetitionController extends GetxController {
 
       competition autonome = new competition(
           nom: "autonome",
-          image: "assets/images/logo2.png",
+          image: "assets/images/autonome.png",
           tache: [
             new Tache(nom: "tache1", note: 2, valeurMax: 2),
             new Tache(nom: "tache2", note: 2, valeurMax: 2),
@@ -42,7 +42,7 @@ class CompetitionController extends GetxController {
       /**************************Suiveur *****************************/
       competition suiveur = new competition(
           nom: "suiveur",
-          image: "assets/images/logo2.png",
+          image: "assets/images/suiveur.png",
           tache: [
             new Tache(nom: "tache1", note: 2, valeurMax: 2),
             new Tache(nom: "tache2", note: 2, valeurMax: 2),
