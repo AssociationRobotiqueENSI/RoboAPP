@@ -4,19 +4,28 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:robo_cup/Controller/CompetitonController.dart';
+import 'package:robo_cup/Vues/comp%C3%A9tition/addCompetition.dart';
 import 'package:robo_cup/Vues/headerWidget.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class DisplayCompetition extends StatelessWidget {
-  DisplayCompetition({Key? key}) : super(key: key);
+class displayCompetition extends StatefulWidget {
+  const displayCompetition({Key? key}) : super(key: key);
+
+  @override
+  State<displayCompetition> createState() => _displayCompetitionState();
+}
+
+class _displayCompetitionState extends State<displayCompetition> {
   final ScrollController _gridViewController = ScrollController();
 
   CompetitionController controller = Get.put(CompetitionController());
   @override
   Widget build(BuildContext context) {
+   
+
     controller.competitions = [];
     controller.getCompetitions();
-
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
