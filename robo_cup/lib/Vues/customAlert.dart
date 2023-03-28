@@ -14,7 +14,7 @@ class AdvanceCustomAlert extends StatelessWidget {
     return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)),
         child: Stack(
-          overflow: Overflow.visible,
+          //overflow: Overflow.visible,
           alignment: Alignment.topCenter,
           children: [
             Container(
@@ -47,11 +47,11 @@ class AdvanceCustomAlert extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      color: color,
+                     // color: color,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
