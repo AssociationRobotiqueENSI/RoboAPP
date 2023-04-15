@@ -39,8 +39,9 @@ dependencies:
   get: 
   google_fonts :
   font_awesome_flutter :
-  cloud_firestore:
+  cloud_firestore: ^0.13.4+2
   cached_network_image: 
+  firebase_core:  
  
 
 dev_dependencies:

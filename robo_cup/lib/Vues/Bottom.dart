@@ -22,7 +22,11 @@ class _BottomPageState extends State<BottomPage> {
 
   @override
   Widget build(BuildContext context) {
-    pages = <Widget>[displayCompetition(), AddCompetition()];
+    pages = <Widget>[
+      displayCompetition(),
+      AddCompetition(),
+      displayCompetition()
+    ];
     return Scaffold(
       body: pages.elementAt(currentIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -40,58 +44,32 @@ class _BottomPageState extends State<BottomPage> {
         items: [
           BottomNavigationBarItem(
               label: 'listt',
-              icon: currentIndex == 1
-                  ? IconButton(
-                      icon: SvgPicture.asset(
-                        "assets/images/activeHome.svg",
-                        height: 35,
-                        width: 35,
-                      ),
-                      onPressed: null,
-                    )
-                  : IconButton(
-                      icon: SvgPicture.asset(
-                        "assets/images/disableHome.svg",
-                        height: 35,
-                        width: 35,
-                      ),
-                      onPressed: null,
-                    )),
+              icon: IconButton(
+                icon: SvgPicture.asset(
+                  "assets/images/activeHome.svg",
+                  height: 35,
+                  width: 35,
+                ),
+                onPressed: null,
+              )),
           BottomNavigationBarItem(
               label: 'chat',
-              icon: currentIndex == 2
-                  ? IconButton(
-                      icon: Icon(
-                        Icons.add_box,
-                        color: Colors.amberAccent,
-                      ),
-                      onPressed: null,
-                    )
-                  : IconButton(
-                      icon: Icon(
-                        Icons.add_box,
-                        color: Colors.grey,
-                      ),
-                      onPressed: null)),
+              icon: IconButton(
+                  icon: Icon(
+                    Icons.add_box,
+                    color: Colors.grey,
+                  ),
+                  onPressed: null)),
           BottomNavigationBarItem(
               label: 'accout',
-              icon: currentIndex == 3
-                  ? IconButton(
-                      icon: SvgPicture.asset(
-                        "assets/images/activeProfile.svg",
-                        height: 40,
-                        width: 40,
-                      ),
-                      onPressed: null,
-                    )
-                  : IconButton(
-                      icon: SvgPicture.asset(
-                        "assets/images/disabledProfile.svg",
-                        height: 40,
-                        width: 40,
-                      ),
-                      onPressed: null,
-                    )),
+              icon: IconButton(
+                icon: SvgPicture.asset(
+                  "assets/images/disabledProfile.svg",
+                  height: 40,
+                  width: 40,
+                ),
+                onPressed: null,
+              )),
         ],
       ),
     );
