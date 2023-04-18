@@ -126,6 +126,23 @@ class AddCompetition extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     createCompetition(name: nameController.text);
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('AlertDialog Title'),
+                        content: const Text('AlertDialog description'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -162,13 +179,7 @@ class AddCompetition extends StatelessWidget {
 
     final json = competition.toJson();
     await docComp.set(json);
-    Get.defaultDialog(
-      title: "GeeksforGeeks",
-      middleText: "Hello world!",
-      backgroundColor: Colors.green,
-      titleStyle: TextStyle(color: Colors.white),
-      middleTextStyle: TextStyle(color: Colors.white),
-    );
+
     nameController.clear();
   }
 }
