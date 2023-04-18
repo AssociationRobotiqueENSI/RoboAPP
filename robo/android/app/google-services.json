@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "455467049035",
-    "project_id": "robo-adf84",
-    "storage_bucket": "robo-adf84.appspot.com"
+    "project_number": "680703257326",
+    "firebase_url": "https://roboapp-2ac15-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "roboapp-2ac15",
+    "storage_bucket": "roboapp-2ac15.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:455467049035:android:689d8fdee20b1a645a2dce",
+        "mobilesdk_app_id": "1:680703257326:android:dfdb1950a4ae1d3df8e1ff",
         "android_client_info": {
           "package_name": "com.example.robo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "455467049035-qvfqrm52l5at695508djs44fjcija7ea.apps.googleusercontent.com",
+          "client_id": "680703257326-afrbkd0t6uoe55r29p65a03og6fbp6f5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDwm9x79lcGZZsIELPPhrmpSRdlbqWumgk"
+          "current_key": "AIzaSyCgmr0auBTGdZ4gijUz_xNfEeKDaIDvkXo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "455467049035-qvfqrm52l5at695508djs44fjcija7ea.apps.googleusercontent.com",
+              "client_id": "680703257326-afrbkd0t6uoe55r29p65a03og6fbp6f5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "680703257326-92seuhnhn1qog8ao237ns860s64orkmt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.robo"
+              }
             }
           ]
         }
