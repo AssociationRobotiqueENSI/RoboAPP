@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -5,48 +7,85 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:robo/Vues/customAlert.dart';
 import 'package:robo/Vues/headerWidget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class loginPage extends StatelessWidget {
+import 'Bottom.dart';
+
+
+class loginPage extends StatefulWidget {
   const loginPage({Key? key}) : super(key: key);
 
   @override
+  State<loginPage> createState() => _loginPageState();
+}
+
+class _loginPageState extends State<loginPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+  Future<void> _signInWithEmailAndPassword(BuildContext context) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final String email = _emailController.text.trim();
+      final String password = _passwordController.text.trim();
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomPage()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+      // Handle sign-in failure here.
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
   Widget build(BuildContext context) {
     Color c1 = Theme.of(context).primaryColor;
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
-        children: [
-          Container(
-            height: Get.height / 3,
-            child: headerWidget(),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            child: Column(children: [
-              Text(
-                "Welcome back!",
-                style: GoogleFonts.playfairDisplay(
-                    textStyle:
-                        TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
+            children: [
+              Container(
+                height: Get.height / 3,
+                child: headerWidget(),
               ),
               SizedBox(
-                height: 5,
+                height: 15,
               ),
-              Text(
-                'Log in to your RoboCup Account!',
-                style: TextStyle(
-                    fontSize: 12, fontFamily: 'Roboto', color: Colors.grey),
-              )
-            ]),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          buildBody(c1, context),
-        ],
-      )),
+              Container(
+                child: Column(children: [
+                  Text(
+                    "Welcome back!",
+                    style: GoogleFonts.playfairDisplay(
+                        textStyle:
+                        TextStyle(fontSize: 32, fontWeight: FontWeight.w600)),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Log in to your RoboCup Account!',
+                    style: TextStyle(
+                        fontSize: 12, fontFamily: 'Roboto', color: Colors.grey),
+                  )
+                ]),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              buildBody(c1, context),
+            ],
+          )),
     );
   }
 
@@ -72,6 +111,7 @@ class loginPage extends StatelessWidget {
                   Container(
                     height: 48,
                     child: TextFormField(
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -102,6 +142,7 @@ class loginPage extends StatelessWidget {
                   Container(
                     height: 48,
                     child: TextFormField(
+                      controller: _passwordController,
                       obscureText: true,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -140,7 +181,7 @@ class loginPage extends StatelessWidget {
                 width: Get.width,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () =>_signInWithEmailAndPassword(context),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
@@ -164,7 +205,7 @@ class loginPage extends StatelessWidget {
               ),
               Center(
                 child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Container(
                     color: Colors.grey,
                     width: (Get.width) / 3.6,
@@ -200,7 +241,7 @@ class loginPage extends StatelessWidget {
                             return AdvanceCustomAlert(
                               color: HexColor("#38972E").withOpacity(0.7),
                               message:
-                                  "This feature will be available in future releases.",
+                              "This feature will be available in future releases.",
                               title: "Future unavailable",
                             );
                           });
@@ -222,7 +263,7 @@ class loginPage extends StatelessWidget {
                             return AdvanceCustomAlert(
                               color: HexColor("#38972E").withOpacity(0.7),
                               message:
-                                  "This feature will be available in future releases.",
+                              "This feature will be available in future releases.",
                               title: "Future unavailable",
                             );
                           });
@@ -236,4 +277,6 @@ class loginPage extends StatelessWidget {
       ]),
     );
   }
-}
+  }
+
+
