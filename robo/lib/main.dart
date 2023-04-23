@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:robo/Vues/comp%C3%A9tition/addCompetition.dart';
 import 'package:robo/Vues/login.dart';
+import 'package:robo/user/addUser.dart';
 import 'models/Homologation/homologationScan.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
                 ColorScheme.fromSwatch().copyWith(secondary: accentColor)),
         debugShowCheckedModeBanner: false,
         home:  Scaffold(
-          body: BottomPage(),
+          body: loginPage(),
         ));
   }
 }

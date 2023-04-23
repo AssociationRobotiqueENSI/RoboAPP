@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:robo/Vues/comp%C3%A9tition/addCompetition.dart';
 import 'package:robo/Vues/comp%C3%A9tition/displayCompetition.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../teams/displayTeam.dart';
+import '../user/addUser.dart';
+import '../user/displayUser.dart';
+import 'Disconnect.dart';
 
 class BottomPage extends StatefulWidget {
   const BottomPage({Key? key}) : super(key: key);
@@ -25,7 +31,10 @@ class _BottomPageState extends State<BottomPage> {
     pages = <Widget>[
       displayCompetition(),
       AddCompetition(),
-      displayCompetition()
+      AddUser(),
+      displayUser(),
+      TeamList(),
+      disconnect(),
     ];
     return Scaffold(
       body: pages.elementAt(currentIndex),
@@ -63,6 +72,16 @@ class _BottomPageState extends State<BottomPage> {
           BottomNavigationBarItem(
               label: 'accout',
               icon: IconButton(
+                icon: Icon(
+                  FontAwesomeIcons.users,
+                  size: 25,
+                  color: Colors.grey,
+                ),
+                onPressed: null,
+              )),
+          BottomNavigationBarItem(
+              label: 'list user',
+              icon: IconButton(
                 icon: SvgPicture.asset(
                   "assets/images/disabledProfile.svg",
                   height: 40,
@@ -70,6 +89,24 @@ class _BottomPageState extends State<BottomPage> {
                 ),
                 onPressed: null,
               )),
+          BottomNavigationBarItem(
+              label: 'Teams',
+              icon: IconButton(
+                icon:  Icon(
+                  Icons.group,
+                  size: 25,
+                  color: Colors.grey,
+                ),
+                onPressed: null,
+              )),
+          BottomNavigationBarItem(
+              label: 'Teams',
+              icon: IconButton(
+                icon:Icon(Icons.exit_to_app) ,
+
+
+                onPressed: null ,
+              ))
         ],
       ),
     );

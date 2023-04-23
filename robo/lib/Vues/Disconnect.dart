@@ -6,8 +6,8 @@ import '../../Vues/headerWidget.dart';
 import '../../Vues/login.dart';
 import 'package:get/get.dart';
 
-class homologationScan extends StatelessWidget {
-  homologationScan({Key? key}) : super(key: key);
+class disconnect extends StatelessWidget {
+  disconnect({Key? key}) : super(key: key);
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
@@ -25,27 +25,7 @@ class homologationScan extends StatelessWidget {
         SizedBox(
           height: 15,
         ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>First("homologation")));
-          },
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            minimumSize: MaterialStateProperty.all(Size(50, 50)),
-            backgroundColor: MaterialStateProperty.all(color),
-          ),
-          child: Text(
-            'Scan',
-            style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.normal),
-          ),
-        ),
+
         SizedBox(height: 10,),
         ElevatedButton(
           onPressed: () async{

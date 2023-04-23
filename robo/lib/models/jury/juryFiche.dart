@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:robo/models/Homologation/homologationScan.dart';
 
-class homologationfiche extends StatefulWidget {
+import 'juryScan.dart';
+class juryFiche extends StatefulWidget {
   QueryDocumentSnapshot<Map<String, dynamic>> data ;
-  homologationfiche(this.data);
+  juryFiche(this.data);
 
   @override
-  State<homologationfiche> createState() =>_homologationficheState();
+  State<juryFiche> createState() =>_juryFicheState();
 
 }
 
 
-class _homologationficheState extends State<homologationfiche> {
+class _juryFicheState extends State<juryFiche> {
   late int somme=0 ;
   List<int> notes = [0, 0, 0, 0, 0];
   List<String> questions = [    'Question 1',    'Question 2',    'Question 3',    'Question 4',    'Question 5',  ];
@@ -84,7 +84,7 @@ class _homologationficheState extends State<homologationfiche> {
                     await docRef.update({
                       'phoneNumber': somme.toString(),
                     });
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homologationScan()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => juryScan()));
                     print('Field updated successfully!');
                   } catch (e) {
                     print('Error updating field: $e');

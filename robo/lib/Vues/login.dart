@@ -8,9 +8,13 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:robo/Vues/customAlert.dart';
 import 'package:robo/Vues/headerWidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../QrCode/qrCode1.dart';
+import '../models/Homologation/homologationScan.dart';
+import '../models/jury/juryScan.dart';
+import '../models/lunch/lunchScan.dart';
+import '../models/reception/receptionScan.dart';
 import 'Bottom.dart';
-
 
 class loginPage extends StatefulWidget {
   const loginPage({Key? key}) : super(key: key);
@@ -24,6 +28,11 @@ class _loginPageState extends State<loginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
+// Get a reference to the Firebase Firestore database
+
+
+
+
   Future<void> _signInWithEmailAndPassword(BuildContext context) async {
     setState(() {
       _isLoading = true;
@@ -36,7 +45,38 @@ class _loginPageState extends State<loginPage> {
         email: email,
         password: password,
       );
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomPage()));
+      var querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo:_emailController.text ).where('password', isEqualTo:_passwordController.text)
+          .limit(1)
+          .get();
+      if (querySnapshot.docs.isNotEmpty) {
+        Map<String, dynamic> data = querySnapshot.docs.first.data();
+        String fieldValue = data["role"];
+        print(fieldValue);
+        switch (fieldValue) {
+          case "admin" :
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => BottomPage()));
+            break;
+          case "homologation" :
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => homologationScan()));
+            break;
+          case "reception" :
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => receptionScan()));
+            break ;
+          case "lunch" :
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => lunchScan()));
+            break ;
+          case "jury" :
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => juryScan()));
+            break ;
+        }
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
